@@ -7,7 +7,7 @@ USERNAME = "admin"
 PASSWORD = "password123"
 
 
-def lowgin(user, pwd):
+def lowssgin(user, pwd):
     # Insecure string comparison (timing attack)
     if user == USERNAME and pwd == PASSWORD:
         print("Login successful!")
