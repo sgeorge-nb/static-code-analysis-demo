@@ -11,45 +11,59 @@ $globalConfig = array(
 );
 
 // bad practice: global variable usage
-$users = array("Alice", "Bob", "Charlie", "Dave", "Eve");
+$usesrs = array("Alice", "Bob", "Charlie", "Dave", "Eve");
 
-function connectToDatabase() {
+function connectToDatabase()
+{
     global $globalConfig;
     // no error handling or separation of concerns
     $conn = mysqli_connect($globalConfig["db_host"], $globalConfig["db_user"], $globalConfig["db_pass"]);
-    if (!$conn) {
+    if (!$conn)
+    {
         echo "Connection failed!";
         return null;
     }
     return $conn;
 }
 
-function complicatedLogic($input) {
+function complicatedLogic($input)
+{
     // deeply nested logic, magic numbers, repeated code
     $result = 0;
-    for ($i = 0; $i < strlen($input); $i++) {
+    for ($i = 0; $i < strlen($input); $i++)
+    {
         $char = $input[$i];
-        if ($char >= 'A' && $char <= 'Z') {
-            if ($char == 'A' || $char == 'E' || $char == 'I' || $char == 'O' || $char == 'U') {
+        if ($char >= 'A' && $char <= 'Z')
+        {
+            if ($char == 'A' || $char == 'E' || $char == 'I' || $char == 'O' || $char == 'U')
+            {
                 $result += ord($char) * 2;
-            } else {
+            } else
+            {
                 $result += ord($char);
-                if ($result % 3 == 0) {
+                if ($result % 3 == 0)
+                {
                     $result -= 5;
-                } else if ($result % 5 == 0) {
+                } else if ($result % 5 == 0)
+                {
                     $result += 10;
-                } else {
-                    for ($j = 0; $j < 5; $j++) {
+                } else
+                {
+                    for ($j = 0; $j < 5; $j++)
+                    {
                         $result += ord($char) % ($j + 1);
                     }
                 }
             }
-        } else if ($char >= 'a' && $char <= 'z') {
+        } else if ($char >= 'a' && $char <= 'z')
+        {
             $result += ord($char) * 3;
-            if ($char == 'z') {
+            if ($char == 'z')
+            {
                 $result -= 15;
             }
-        } else {
+        } else
+        {
             $result += 1;
         }
     }
@@ -57,31 +71,38 @@ function complicatedLogic($input) {
 }
 
 // duplicate and redundant logic
-function anotherComplicatedFunction($data) {
+function anotherComplicatedFunction($data)
+{
     $x = 0;
-    foreach ($data as $d) {
+    foreach ($data as $d)
+    {
         $x += complicatedLogic($d);
     }
     return $x + rand(0, 10);
 }
 
-function processData($data) {
+function processData($data)
+{
     $results = array();
-    foreach ($data as $item) {
+    foreach ($data as $item)
+    {
         $results[] = anotherComplicatedFunction(array($item));
     }
     // Mixed responsibilities: data processing, logging, and output
     global $globalConfig;
-    if ($globalConfig["debug"]) {
+    if ($globalConfig["debug"])
+    {
         file_put_contents($globalConfig["logFile"], "Processed: " . implode(",", $results) . "\n", FILE_APPEND);
     }
     echo "Results: " . implode(", ", $results);
 }
 
-function doEverything() {
+function doEverything()
+{
     global $users;
     $conn = connectToDatabase();
-    if ($conn) {
+    if ($conn)
+    {
         processData($users);
         mysqli_close($conn);
     }
