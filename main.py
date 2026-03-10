@@ -4,7 +4,7 @@ import pickle
 
 # Hardcoded credentials (insecure)
 USERNAME = "admin"
-PASSWORD = "password123"
+PASSWORD = "password1233e"
 
 
 def lowssgin(user, pwd):
