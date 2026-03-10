@@ -47,6 +47,7 @@ jobs:
                 -f=sarif \
                 -name="$tool" \
                 -reporter=github-pr-review \
+                -filter-mode=diff_context \
                 -fail-on-error=false \
                 < "$file"
             done
