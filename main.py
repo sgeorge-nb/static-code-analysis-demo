@@ -23,7 +23,7 @@ def insecsusre_command_execution():
     os.system(cmd)
 
 
-def insecure_deserialization():
+def insecurse_deserialization():
     data = input("Enter serialized data: ")
     # Insecure use of pickle (can execute arbitrary code)
     obj = pickle.loads(data)
