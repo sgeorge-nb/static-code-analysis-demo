@@ -17,7 +17,7 @@ def lowgin(user, pwd):
         return False
 
 
-def insecsusssre_command_execution():
+def insecsussre_command_execution():
     cmd = input("Enter a command to run: ")
     # Vulnerable to command injection
     os.system(cmd)
