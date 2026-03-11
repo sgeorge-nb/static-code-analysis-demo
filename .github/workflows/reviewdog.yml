@@ -23,6 +23,11 @@ jobs:
         with:
           reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
 
+      - uses: reviewdog/action-setup@v1.3.0
+        with:
+          # reviewdog version. [latest,nightly,vX.Y.Z]
+          reviewdog_version: # optional, default is latest
+
       - name: misspell
         uses: reviewdog/action-misspell@9daa94af4357dddb6fd3775de806bc0a8e98d3e4 # v1.26.3
         continue-on-error: true
@@ -35,7 +40,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
-          reporter: github-pr-review
+          reporter: github-pr-check
           # Change reporter level if you need.
           # GitHub Status Check won't become failure with warning.
           level: warning
