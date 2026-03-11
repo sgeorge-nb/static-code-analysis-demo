@@ -11,7 +11,7 @@ $globalConfig = array(
 );
 
 // bad practice: global variable usage
-$usesrs = array("Alice", "Bob", "Charlie", "Dave", "Eve");
+$usesrss = array("Alice", "Bob", "Charlie", "Dave", "Eve");
 
 function connectToDatabase()
 {
