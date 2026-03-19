@@ -25,7 +25,7 @@ jobs:
       - uses: reviewdog/action-setup@v1.3.0
         with:
           # reviewdog version. [latest,nightly,vX.Y.Z]
-          reviewdog_version: # optional, default is latest
+          reviewdog_version: latest # optional, default is latest
 
       - name: misspell
         id: misspell

@@ -6,7 +6,7 @@ on:
       - main
       - master
     paths:
-      - **/*.php
+      - "**/*.php"
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Psalm
         uses: psalm/psalm-github-actions@2.3.0
@@ -31,14 +31,13 @@ jobs:
           security_analysis: true
           show_info: true
 
-      - name:
+      - name: PHPStan
         uses: mikebronner/action-reviewdog-phpstan@1.1.2
         continue-on-error: true
         with:
-          github_token: '${{ github.token }}'
-          level: 'error'
-          fail_on_error: 'false'
+          github_token: "${{ github.token }}"
+          level: "error"
+          fail_on_error: "false"
           phpstan_level: 4
-          reporter: 'github-pr-review'
-          target_directory: '.'
-      
+          reporter: "github-pr-review"
+          target_directory: "."
