@@ -1,0 +1,44 @@
+name: Reviewer - PHP
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - **/*.php
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  reviewdog:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Psalm
+        uses: psalm/psalm-github-actions@2.3.0
+        continue-on-error: true
+        with:
+          security_analysis: true
+          show_info: true
+
+      - name:
+        uses: mikebronner/action-reviewdog-phpstan@1.1.2
+        continue-on-error: true
+        with:
+          github_token: '${{ github.token }}'
+          level: 'error'
+          fail_on_error: 'false'
+          phpstan_level: 4
+          reporter: 'github-pr-review'
+          target_directory: '.'
+      
